@@ -1,0 +1,24 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+  justify-content: center;
+  justify-items: center;
+  gap: 0.5rem;
+  margin-top: 5rem;
+}
+
+img {
+  width: 65px;
+  height: 95px;
+}

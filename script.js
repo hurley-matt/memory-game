@@ -1,17 +1,25 @@
 "use strict";
 
+let cardList = [];
+const display = document.querySelector(".grid-container");
+
 function Card(type) {
   this.type = type;
 }
 
-const cardGenerator = Math.trunc(Math.random() * 16 + 1);
-let cardList = [];
-
-for (let i = 0; i < 16; i++) {
-  const cardNumber = cardGenerator;
-  if (!cardList.includes(cardNumber)) {
-    const card = new Card(cardNumber);
-    cardList.push(cardNumber);
-    console.log(card);
+function cardsLoader() {
+  const cardGenerator = Math.trunc(Math.random() * 16 + 1);
+  const imgNumber = cardGenerator;
+  if (!cardList.includes(imgNumber)) {
+    const newCard = new Card(imgNumber);
+    cardList.push(imgNumber);
+    const div = document.createElement("div");
+    div.classList.add("card-back");
+    div.innerHTML = `<img src='imgs/${newCard.type}.jpg'>`;
+    display.append(div);
   }
+}
+
+while (cardList.length < 16) {
+  cardsLoader();
 }

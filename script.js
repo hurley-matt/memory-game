@@ -1,9 +1,15 @@
 "use strict";
 
 let cardList = [];
+let minute = 0;
+
+let second = 0;
 let firstCard;
 let secondCard;
 let clickNumber = 1;
+const pageBody = document.querySelector("body");
+const timer = document.getElementById("timer");
+
 const display = document.querySelector(".grid-container");
 display.addEventListener("click", (e) => {
   const card = e.target.closest(".card");
@@ -23,6 +29,10 @@ display.addEventListener("click", (e) => {
     } else {
       firstCard.classList.add("solved");
       secondCard.classList.add("solved");
+      gameEndCheck();
+      retryBtn.addEventListener("click", () => {
+        location.reload();
+      });
     }
   }
 });
@@ -67,3 +77,29 @@ function cardsLoader() {
 while (cardList.length < 16) {
   cardsLoader();
 }
+
+function gameEndCheck() {
+  if (document.getElementsByClassName("solved").length === 2) {
+    pageBody.innerHTML = `
+    <div class="game-over">
+      <h1>You found all the cats!</h1>
+      <h2>It took X amount of time<h2>
+      <img id="gif" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F6c%2Fef%2Fba%2F6cefba78c0b7db1fad684c486e83483f.gif&f=1&nofb=1&ipt=3e91c46b6e4ca031ce37b86ace9bdf62f2ef2bfd2217180b7e6cbda1f25087d0">
+      <button id="retry-btn" type="button">Try again?</button>
+    </div>
+    `;
+    const retryBtn = document.getElementById("retry-btn");
+    retryBtn.addEventListener("click", () => {
+      location.reload();
+    });
+  }
+}
+
+// setInterval(() => {
+//   second++;
+//   if (second === 60) {
+//     minute++;
+//     second = 0;
+//   }
+//   timer.innerHTML = `<p>${minute}:${second}`;
+// }, 1000);

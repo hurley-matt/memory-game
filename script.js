@@ -25,7 +25,7 @@ display.addEventListener("click", (e) => {
       setTimeout(() => {
         firstCard.innerHTML = `<img src='imgs/card-back.jpg'>`;
         secondCard.innerHTML = `<img src='imgs/card-back.jpg'>`;
-      }, 1000);
+      }, 500);
     } else {
       firstCard.classList.add("solved");
       secondCard.classList.add("solved");
@@ -95,7 +95,7 @@ while (cardList.length < 16) {
 }
 
 function gameEndCheck() {
-  if (document.getElementsByClassName("solved").length === 2) {
+  if (document.getElementsByClassName("solved").length === 16) {
     let minUnit = minute === 1 ? "min" : "mins";
     let secUnit = second === 1 ? "sec" : "secs";
     pageBody.innerHTML = `
